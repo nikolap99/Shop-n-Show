@@ -47,11 +47,12 @@ export class ProductService {
     this.location.back();
   }
 
-  addToCart(product: object): void {
-    this.cartList.push(product);
-    console.log(this.cartList);
-    /*if (this.cartList[product.id]) {
-      console.log('It exists');
-    }*/
+  addToCart(product: Product, quantity: number): void {
+    if (this.cartList[product.id]) {
+      this.cartList[product.id].quantity += quantity;
+    } else {
+      this.cartList.push({ ...product, quantity: quantity });
+    }
+    console.table(this.cartList);
   }
 }

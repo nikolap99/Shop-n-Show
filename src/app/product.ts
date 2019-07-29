@@ -1,4 +1,5 @@
 export class Product {
+  constructor(quantity?: number) {}
   id: number;
   name: string;
   price: number;
