@@ -1,34 +1,12 @@
-import { Injectable } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
-import { Location } from '@angular/common';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Observable } from 'rxjs';
-import { catchError, map, tap } from 'rxjs/operators';
+import { TestBed } from '@angular/core/testing';
 
-@Injectable({
-  providedIn: 'root'
-})
-export class ProductService {
-  cartList = [];
-  productList = [];
-  productsUrl = './assets/products.json';
+import { ProductService } from './product.service';
 
-  constructor(
-    private route: ActivatedRoute,
-    private location: Location,
-    private http: HttpClient
-  ) {}
+describe('ProductService', () => {
+  beforeEach(() => TestBed.configureTestingModule({}));
 
-  getProducts(): Observable<any> {
-    return this.http.get(this.productsUrl);
-  }
-
-  goBack(): void {
-    this.location.back();
-  }
-
-  addToCart(product: object) {
-    this.cartList.push(product);
-    console.log(this.cartList);
-  }
-}
+  it('should be created', () => {
+    const service: ProductService = TestBed.get(ProductService);
+    expect(service).toBeTruthy();
+  });
+});
