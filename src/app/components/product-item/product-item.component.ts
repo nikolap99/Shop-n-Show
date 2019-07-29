@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
+
+//import { ProductService } from '../../product.service';
 
 @Component({
   selector: 'app-product-item',
@@ -6,10 +8,20 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./product-item.component.scss']
 })
 export class ProductItemComponent implements OnInit {
+  //@Input() product = [];
+  quantity = 1;
+  constructor(/*private productService: ProductService*/) {}
 
-  constructor() { }
+  ngOnInit() {}
 
-  ngOnInit() {
+  /*incrementProduct() {
+    this.quantity++;
+  }
+  decrementProduct() {
+    if (this.quantity > 1) this.quantity--;
   }
 
+  addToCart() {
+    this.productService.addToCart(this.product);
+  }*/
 }

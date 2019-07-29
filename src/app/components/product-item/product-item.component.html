@@ -1,1 +1,32 @@
-<p>product-item works!</p>
+<div class="item">
+  <div class="item-top-box">
+    <div class="image-container">
+      <img src="{{ product.picture }}" alt="" />
+    </div>
+
+    <div class="desc-container">
+      <div class="title">
+        <h3>{{ product.name }}</h3>
+      </div>
+      <div class="desc-box">
+        <p>
+          {{ product.description }}
+        </p>
+      </div>
+      <a routerLink="/product/{{ product.id }}"
+        ><button class="btn-view">View Detailed</button></a
+      >
+    </div>
+  </div>
+  <div class="item-bottom-box">
+    <div class="quantity-box">
+      <button (click)="decrementProduct()" class="quantity-btn">-</button
+      ><span>{{ quantity }}</span
+      ><button (click)="incrementProduct()" class="quantity-btn">+</button>
+    </div>
+    <span class="item-price">{{ product.price * quantity | currency }}</span>
+  </div>
+  <div class="add-to-cart-box">
+    <button (click)="addToCart()" class="add-to-cart-btn">Add to Cart</button>
+  </div>
+</div>
