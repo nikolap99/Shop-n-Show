@@ -8,6 +8,7 @@ import { HomepageComponent } from './containers/homepage/homepage.component';
 import { ProductpageComponent } from './containers/productpage/productpage.component';
 import { CartpageComponent } from './containers/cartpage/cartpage.component';
 import { ProductItemComponent } from './components/product-item/product-item.component';
+import { HomeModule } from './containers/homepage/home.module';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,7 @@ import { ProductItemComponent } from './components/product-item/product-item.com
     CartpageComponent,
     ProductItemComponent
   ],
-  imports: [BrowserModule, AppRoutingModule],
+  imports: [BrowserModule, AppRoutingModule, HomeModule],
   providers: [],
   bootstrap: [AppComponent]
 })
