@@ -10,7 +10,7 @@
       </div>
       <div class="desc-box">
         <p>
-          {{ product.description }}
+          {{ product.description | shortDesc: 10 }}
         </p>
       </div>
       <a routerLink="/product/{{ product.id }}"
