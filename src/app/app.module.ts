@@ -8,9 +8,12 @@ import { AppComponent } from './app.component';
 import { NotFoundComponent } from './containers/not-found/not-found.component';
 import { HeaderComponent } from './components/header/header.component';
 
+import { HomeModule } from './containers/homepage/home.module';
+
 @NgModule({
   declarations: [AppComponent, NotFoundComponent, HeaderComponent],
-  imports: [BrowserModule, AppRoutingModule, FontAwesomeModule],
+  imports: [BrowserModule, AppRoutingModule, FontAwesomeModule, HomeModule],
+
   providers: [],
   bootstrap: [AppComponent]
 })
