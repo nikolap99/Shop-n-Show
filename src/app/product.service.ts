@@ -53,6 +53,5 @@ export class ProductService {
     } else {
       this.cartList.push({ ...product, quantity: quantity });
     }
-    console.table(this.cartList);
   }
 }
