@@ -8,7 +8,7 @@ import { ProductService } from '../../product.service';
   styleUrls: ['./product-item.component.scss']
 })
 export class ProductItemComponent implements OnInit {
-  @Input() product = [];
+  @Input() product = {};
   quantity = 1;
   constructor(private productService: ProductService) {}
 
@@ -21,7 +21,7 @@ export class ProductItemComponent implements OnInit {
     if (this.quantity > 1) this.quantity--;
   }
 
-  /*addToCart() {
+  addToCart() {
     this.productService.addToCart(this.product);
-  }*/
+  }
 }

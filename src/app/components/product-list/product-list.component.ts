@@ -7,7 +7,7 @@ import { ProductService } from '../../product.service';
   styleUrls: ['./product-list.component.scss']
 })
 export class ProductListComponent implements OnInit {
-  products = {};
+  products = [];
 
   constructor(private productService: ProductService) {}
 
@@ -15,7 +15,7 @@ export class ProductListComponent implements OnInit {
     this.getProducts();
   }
 
-  getProducts() {
+  getProducts(): void {
     this.productService
       .getProducts()
       .subscribe(product => (this.products = product));

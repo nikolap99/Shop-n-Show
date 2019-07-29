@@ -2,7 +2,8 @@ import { Injectable } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { Product } from './product';
+import { Observable, of } from 'rxjs';
 import { catchError, map, tap } from 'rxjs/operators';
 
 @Injectable({
@@ -11,7 +12,11 @@ import { catchError, map, tap } from 'rxjs/operators';
 export class ProductService {
   cartList = [];
   productList = [];
-  productsUrl = './assets/products.json';
+
+  private productsUrl = './assets/products.json';
+  httpOptions = {
+    headers: new HttpHeaders({ 'Content-Type': 'application/json' })
+  };
 
   constructor(
     private route: ActivatedRoute,
@@ -19,16 +24,34 @@ export class ProductService {
     private http: HttpClient
   ) {}
 
-  getProducts() {
-    return this.http.get(this.productsUrl);
+  private log(message: string) {
+    console.log(message);
+  }
+
+  private handleError<T>(operation = 'operation', result?: T) {
+    return (error: any): Observable<T> => {
+      console.error(error);
+      this.log(`${operation} failed: ${error.message}`);
+      return of(result as T);
+    };
+  }
+
+  getProducts(): Observable<Product[]> {
+    return this.http.get<Product[]>(this.productsUrl).pipe(
+      tap(_ => console.log('fetched products')),
+      catchError(this.handleError<any>('error'))
+    );
   }
 
   goBack(): void {
     this.location.back();
   }
 
-  addToCart(product: object) {
+  addToCart(product: object): void {
     this.cartList.push(product);
     console.log(this.cartList);
+    /*if (this.cartList[product.id]) {
+      console.log('It exists');
+    }*/
   }
 }
