@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { Location } from '@angular/common';
 
 import { ProductService } from '../../product.service';
 
@@ -14,15 +13,11 @@ export class ProductpageComponent implements OnInit {
   quantity = 1;
   constructor(
     private productService: ProductService,
-    private route: ActivatedRoute,
-    private location: Location
+    private route: ActivatedRoute
   ) {}
 
   ngOnInit() {
     this.getProduct();
-  }
-  goBack() {
-    this.location.back();
   }
 
   getProduct(): void {
@@ -33,17 +28,5 @@ export class ProductpageComponent implements OnInit {
         products => (this.product = products.find(product => product.id == id))
       );
     console.log('got product!');
-  }
-
-  incrementProduct() {
-    this.quantity++;
-  }
-
-  decrementProduct() {
-    if (this.quantity > 1) this.quantity--;
-  }
-
-  addToCart() {
-    //this.productService.
   }
 }

@@ -2,6 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
 
+import { RouterModule } from '@angular/router';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -23,6 +24,7 @@ import { CartBoxComponent } from './components/cart-box/cart-box.component';
   imports: [
     BrowserModule,
     AppRoutingModule,
+    RouterModule,
     FontAwesomeModule,
     HomeModule,
     ProductModule,
