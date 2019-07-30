@@ -56,7 +56,7 @@ export class ProductService {
     } else {
       this.cartList.push({ ...product, quantity: quantity });
     }
-    // TODO: CHANGE COUNTER INSIDE CARTBOX IN HEADER
+    // CHANGE COUNTER INSIDE CARTBOX IN HEADER
     this.cartListLength = this.cartList.reduce(
       (acc, obj) => acc + obj.quantity,
       0
