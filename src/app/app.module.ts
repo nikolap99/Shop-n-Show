@@ -10,9 +10,10 @@ import { NotFoundComponent } from './containers/not-found/not-found.component';
 import { HeaderComponent } from './components/header/header.component';
 
 import { HomeModule } from './containers/homepage/home.module';
+import { CartBoxComponent } from './components/cart-box/cart-box.component';
 
 @NgModule({
-  declarations: [AppComponent, NotFoundComponent, HeaderComponent],
+  declarations: [AppComponent, NotFoundComponent, HeaderComponent, CartBoxComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,

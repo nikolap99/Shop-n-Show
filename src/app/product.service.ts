@@ -1,10 +1,10 @@
-import { Injectable } from '@angular/core';
+import { Injectable, Output } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Product } from './product';
-import { Observable, of } from 'rxjs';
-import { catchError, map, tap } from 'rxjs/operators';
+import { Observable, of, Subject } from 'rxjs';
+import { catchError, tap } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -12,6 +12,13 @@ import { catchError, map, tap } from 'rxjs/operators';
 export class ProductService {
   cartList = [];
   productList = [];
+  cartListLength: number = 0;
+
+  get cartCounter$() {
+    return this._cartCounter$.asObservable();
+  }
+
+  private _cartCounter$: Subject<number> = new Subject<number>();
 
   private productsUrl = './assets/products.json';
   httpOptions = {
@@ -24,14 +31,10 @@ export class ProductService {
     private http: HttpClient
   ) {}
 
-  private log(message: string) {
-    console.log(message);
-  }
-
   private handleError<T>(operation = 'operation', result?: T) {
     return (error: any): Observable<T> => {
       console.error(error);
-      this.log(`${operation} failed: ${error.message}`);
+      console.log(`${operation} failed: ${error.message}`);
       return of(result as T);
     };
   }
@@ -53,5 +56,11 @@ export class ProductService {
     } else {
       this.cartList.push({ ...product, quantity: quantity });
     }
+    // TODO: CHANGE COUNTER INSIDE CARTBOX IN HEADER
+    this.cartListLength = this.cartList.reduce(
+      (acc, obj) => acc + obj.quantity,
+      0
+    );
+    this._cartCounter$.next(this.cartListLength);
   }
 }
