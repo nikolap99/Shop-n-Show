@@ -10,10 +10,10 @@
       </div>
       <div class="desc-box">
         <p>
-          {{ product.description | shortDesc: 60:true }}
+          {{ product.description | shortDesc: 60:isShort }}
         </p>
       </div>
-      <a routerLink="/product/{{ product.id }}"
+      <a *ngIf="isShort" routerLink="/product/{{ product.id }}"
         ><button class="btn-view">View Detailed</button></a
       >
     </div>

@@ -1,4 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+
 import { Product } from '../../product';
 import { ProductService } from '../../product.service';
 
@@ -10,9 +12,15 @@ import { ProductService } from '../../product.service';
 export class ProductItemComponent implements OnInit {
   @Input() product: Product;
   quantity: number = 1;
-  constructor(private productService: ProductService) {}
+  isShort: boolean;
+  constructor(
+    private productService: ProductService,
+    private route: ActivatedRoute
+  ) {}
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.checkUrlId();
+  }
 
   incrementProduct() {
     this.quantity++;
@@ -21,7 +29,15 @@ export class ProductItemComponent implements OnInit {
     if (this.quantity > 1) this.quantity--;
   }
 
-  addToCart() {
-    this.productService.addToCart(this.product, this.quantity);
+  checkUrlId() {
+    if (this.route.snapshot.paramMap.get('id')) {
+      this.isShort = false;
+    } else {
+      this.isShort = true;
+    }
   }
+
+  /*addToCart() {
+    this.productService.addToCart(this.product, this.quantity);
+  }*/
 }
