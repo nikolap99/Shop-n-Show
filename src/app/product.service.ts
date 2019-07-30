@@ -46,6 +46,11 @@ export class ProductService {
     );
   }
 
+  getCartProducts(): Observable<Product[]> {
+    console.table(this.cartList);
+    return of(this.cartList);
+  }
+
   goBack(): void {
     this.location.back();
   }

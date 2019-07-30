@@ -1,1 +1,17 @@
-<p>cart-item works!</p>
+<div class="cart-item-box">
+  <img src="{{ product.picture }}" alt="" />
+  <div class="cart-description-box">
+    <h3>{{ product.name }}</h3>
+    <p>{{ product.description | shortDesc: 60:true }}</p>
+  </div>
+
+  <div class="cart-quantity-box">
+    <div class="cart-quantity-buttons">
+      <button class="quantity-btn">-</button><span>{{ product.quantity }}</span
+      ><button class="quantity-btn">+</button>
+    </div>
+    <span class="price">{{ product.quantity * product.price | currency }}</span>
+  </div>
+
+  <div class="cart-remove"><button class="btn-remove">x</button></div>
+</div>

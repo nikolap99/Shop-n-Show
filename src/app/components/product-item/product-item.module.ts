@@ -3,11 +3,11 @@ import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 
 import { ProductItemComponent } from './product-item.component';
-import { ShortDescPipe } from '../../short-desc.pipe';
+import { CustomPipesModule } from '../../custom-pipes/custom-pipes.module';
 
 @NgModule({
-  declarations: [ProductItemComponent, ShortDescPipe],
-  imports: [CommonModule, RouterModule],
+  declarations: [ProductItemComponent],
+  imports: [CommonModule, RouterModule, CustomPipesModule],
   exports: [ProductItemComponent]
 })
 export class ProductItemModule {}

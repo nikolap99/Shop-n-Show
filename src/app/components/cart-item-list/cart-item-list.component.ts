@@ -3,22 +3,22 @@ import { Product } from '../../product';
 import { ProductService } from '../../product.service';
 
 @Component({
-  selector: 'app-product-list',
-  templateUrl: './product-list.component.html',
-  styleUrls: ['./product-list.component.scss']
+  selector: 'app-cart-item-list',
+  templateUrl: './cart-item-list.component.html',
+  styleUrls: ['./cart-item-list.component.scss']
 })
-export class ProductListComponent implements OnInit {
+export class CartItemListComponent implements OnInit {
   products: Product[];
-
   constructor(private productService: ProductService) {}
 
   ngOnInit() {
-    this.getProducts();
+    this.getCartProducts();
+    console.log(this.products);
   }
 
-  getProducts(): void {
+  getCartProducts(): void {
     this.productService
-      .getProducts()
+      .getCartProducts()
       .subscribe(product => (this.products = product));
   }
 }
