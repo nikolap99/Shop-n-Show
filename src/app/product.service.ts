@@ -57,12 +57,12 @@ export class ProductService {
   }
 
   addToCart(product: Product, quantity: number): void {
-    if (this.cartList[product.id]) {
-      this.cartList[product.id].quantity += quantity;
+    if (this.cartList.find(x => x.id === product.id)) {
+      this.cartList.find(x => x.id === product.id).quantity += quantity;
     } else {
       this.cartList.push({ ...product, quantity: quantity });
     }
-    // TODO: CHANGE COUNTER INSIDE CARTBOX IN HEADER
+    // CHANGE COUNTER INSIDE CARTBOX IN HEADER
     this.cartListLength = this.cartList.reduce(
       (acc, obj) => acc + obj.quantity,
       0
