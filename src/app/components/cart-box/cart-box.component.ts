@@ -12,6 +12,7 @@ import { takeUntil } from 'rxjs/operators';
 export class CartBoxComponent implements OnInit {
   faShoppingCart = faShoppingCart;
   cartCounter: number = 0;
+  cartPrice: number = 0;
   _subscription;
 
   private _onDestroy$ = new Subject<void>();
@@ -21,7 +22,8 @@ export class CartBoxComponent implements OnInit {
     this._subscription = productService.cartCounter$
       .pipe(takeUntil(this._onDestroy$))
       .subscribe(value => {
-        this.cartCounter = value;
+        this.cartCounter = value.counter;
+        this.cartPrice = value.price;
       });
   }
 

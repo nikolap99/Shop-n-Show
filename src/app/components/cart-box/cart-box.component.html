@@ -2,5 +2,5 @@
   <a routerLink="/cart"
     ><span class="cart"><fa-icon [icon]="faShoppingCart"></fa-icon></span
   ></a>
-  <span> {{ cartCounter }} </span>
+  <span> {{ cartCounter }} | {{ cartPrice | currency }}</span>
 </div>

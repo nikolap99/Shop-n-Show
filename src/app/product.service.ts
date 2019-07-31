@@ -13,12 +13,13 @@ export class ProductService {
   cartList = [];
   productList = [];
   cartListLength: number = 0;
+  cartListFullPrice: number = 0;
 
   get cartCounter$() {
     return this._cartCounter$.asObservable();
   }
 
-  private _cartCounter$: Subject<number> = new Subject<number>();
+  private _cartCounter$: Subject<object> = new Subject<object>();
 
   private productsUrl = './assets/products.json';
   httpOptions = {
@@ -66,6 +67,13 @@ export class ProductService {
       (acc, obj) => acc + obj.quantity,
       0
     );
-    this._cartCounter$.next(this.cartListLength);
+    this.cartListFullPrice = this.cartList.reduce(
+      (acc, obj) => acc + obj.price * obj.quantity,
+      0
+    );
+    this._cartCounter$.next({
+      counter: this.cartListLength,
+      price: this.cartListFullPrice
+    });
   }
 }
