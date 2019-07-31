@@ -6,10 +6,8 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./cart-buy.component.scss']
 })
 export class CartBuyComponent implements OnInit {
+  cartPrice: number = 0;
+  constructor() {}
 
-  constructor() { }
-
-  ngOnInit() {
-  }
-
+  ngOnInit() {}
 }
