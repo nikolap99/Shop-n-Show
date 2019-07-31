@@ -4,6 +4,8 @@
 $headerBg: #8e44ad;
 $darkGreen: #27ae60;
 $lightGreen: #2ecc71;
+$hoverGreen: #1abc9c;
+$lightRed: #ff7675;
 
 /* Initial Style */
 html,
@@ -92,7 +94,7 @@ a {
   cursor: pointer;
   transition: all 0.4s;
   &:hover {
-    background: $darkGreen;
+    background: $hoverGreen;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1), 0 4px 6px rgba(0, 0, 0, 0.1);
     transition: all 0.4s;
   }
@@ -178,7 +180,7 @@ a {
     cursor: pointer;
     transition: all 0.3s;
     &:hover {
-      background: #1abc9c;
+      background: $hoverGreen;
       transition: all 0.3s;
     }
   }
@@ -204,7 +206,7 @@ a {
     cursor: pointer;
     transition: all 0.4s;
     &:hover {
-      background: #1abc9c;
+      background: $hoverGreen;
       transition: all 0.4s;
     }
   }
@@ -403,15 +405,18 @@ a {
     padding: 1em 0;
     width: 100%;
   }
-  .buy-btn {
+  .cart-btn-container {
     display: flex;
     flex: 1;
+    flex-direction: row;
+  }
+  .buy-btn,
+  .remove-all-btn {
     align-self: flex-end;
     align-items: center;
     justify-content: center;
     border: 0;
     outline: 0;
-    background: $lightGreen;
     font-size: 1.2em;
     color: #fff;
     width: 100%;
@@ -419,8 +424,21 @@ a {
     cursor: pointer;
     transition: all 0.4s;
     &:hover {
-      background: #1abc9c;
       transition: all 0.4s;
+    }
+  }
+  .buy-btn {
+    flex: 2;
+    background: $lightGreen;
+    &:hover {
+      background: $darkGreen;
+    }
+  }
+  .remove-all-btn {
+    flex: 1;
+    background: $lightRed;
+    &:hover {
+      background: #e74c3c;
     }
   }
 }
