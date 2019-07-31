@@ -22,6 +22,9 @@ a {
 
 /* Header Style */
 .header {
+  position: fixed;
+  width: 100%;
+  top: 0;
   display: flex;
   align-items: center;
   justify-content: flex-end;
@@ -29,10 +32,12 @@ a {
   background: $headerBg;
   color: #fff;
   font-weight: bold;
-  margin: 0;
+  z-index: 999;
 }
 .logo {
-  margin: auto;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
   font-family: 'Lobster', cursive;
   font-size: 1.1em;
   color: #fff;
@@ -45,8 +50,10 @@ a {
 }
 .cart-box {
   border: 1px solid #fff;
-  padding: 5px 2em;
-  margin: 0 2em 0 0;
+  width: 12em;
+  text-align: center;
+  padding: 5px 0;
+  margin-right: 5em;
   border-radius: 5px;
   background: rgba(0, 0, 0, 0.2);
   a {
@@ -95,6 +102,7 @@ a {
 .products-container {
   text-align: center;
   width: 100%;
+  margin-top: 5em;
 }
 .item {
   display: inline-flex;
@@ -421,30 +429,58 @@ a {
     justify-self: flex-end;
     border: 1px solid #fff;
     padding: 3px 1em;
+    font-size: 0.7em;
+    width: 8em;
     margin: 0 1em 0 0;
+  }
+  .logo {
+    font-size: 0.8em;
   }
   /* Wrapper*/
   .wrapper {
     width: 90%;
-    margin: 0 auto;
   }
   /* Items on the shop*/
   .products-container {
     margin: 0;
     width: 100%;
   }
-  .products-container .item {
-    margin: 1.2em 0;
-    border-radius: 6px;
+  .product-container .item {
+    display: block;
+    text-align: center;
     width: 90%;
+    margin: 0 auto;
+    margin-top: 8em;
+    .item-top-box {
+      margin: 0;
+      height: 100%;
+      .image-container {
+        display: block;
+        flex: 2;
+        height: 100%;
+        width: 100%;
+        margin: 0 1em;
+        img {
+          display: block;
+          max-height: 100%;
+          max-width: 100%;
+          width: auto;
+          margin: auto;
+          margin: 0;
+          transform: translateY(0);
+        }
+      }
+    }
   }
   /* Containers*/
   .product-page-container {
-    width: 90%;
+    width: 100%;
+  }
+  .product-page-container .item {
+    width: 100% !important;
   }
   /* Single product page*/
   .product-page-container .product-title {
-    margin-top: 2em;
     margin-bottom: 0;
   }
   .product-page-container img {
