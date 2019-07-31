@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 
 @Component({
   selector: 'app-cart-buy',
@@ -7,7 +7,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CartBuyComponent implements OnInit {
   cartPrice: number = 0;
+  isTrue: boolean;
   constructor() {}
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.isTrue = true;
+    setTimeout(() => {
+      this.isTrue = false;
+      console.log('hello');
+    }, 1000);
+  }
 }
