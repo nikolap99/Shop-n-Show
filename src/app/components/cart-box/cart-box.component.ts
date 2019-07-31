@@ -3,6 +3,7 @@ import { faShoppingCart } from '@fortawesome/free-solid-svg-icons';
 import { ProductService } from '../../product.service';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
+import { counter } from '@fortawesome/fontawesome-svg-core';
 
 @Component({
   selector: 'app-cart-box',
@@ -22,8 +23,9 @@ export class CartBoxComponent implements OnInit {
     this._subscription = productService.cartCounter$
       .pipe(takeUntil(this._onDestroy$))
       .subscribe(value => {
-        this.cartCounter = value.counter;
-        this.cartPrice = value.price;
+        let { counter = 0, price = 0 } = { ...value };
+        this.cartCounter = counter;
+        this.cartPrice = price;
       });
   }
 

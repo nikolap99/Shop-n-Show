@@ -424,6 +424,13 @@ a {
     }
   }
 }
+.not-found-container {
+  margin-top: 7em;
+  text-align: center;
+  .not-found-inner {
+    margin-top: 2em;
+  }
+}
 .product-container,
 .cart-page-container {
   margin-top: 7em;
@@ -546,5 +553,14 @@ a {
 
   .cart-buy-box {
     width: 100%;
+  }
+  .not-found-container {
+    .not-found-inner {
+      font-size: 0.6em;
+      img {
+        width: 50%;
+        height: 50%;
+      }
+    }
   }
 }
