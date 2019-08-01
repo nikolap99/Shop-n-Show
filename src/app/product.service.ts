@@ -55,6 +55,19 @@ export class ProductService {
     this.location.back();
   }
 
+  calculateLength(): void {
+    this.cartListLength = this.cartList.reduce(
+      (acc, obj) => acc + obj.quantity,
+      0
+    );
+  }
+  calculatePrice(): void {
+    this.cartListFullPrice = this.cartList.reduce(
+      (acc, obj) => acc + obj.price * obj.quantity,
+      0
+    );
+  }
+
   addToCart(product: Product, quantity: number): void {
     if (this.cartList.find(x => x.id === product.id)) {
       this.cartList.find(x => x.id === product.id).quantity += quantity;
@@ -62,14 +75,8 @@ export class ProductService {
       this.cartList.push({ ...product, quantity: quantity });
     }
     // CHANGE COUNTER INSIDE CARTBOX IN HEADER
-    this.cartListLength = this.cartList.reduce(
-      (acc, obj) => acc + obj.quantity,
-      0
-    );
-    this.cartListFullPrice = this.cartList.reduce(
-      (acc, obj) => acc + obj.price * obj.quantity,
-      0
-    );
+    this.calculateLength();
+    this.calculatePrice();
 
     // Sending object to subscribers
     this._cartCounter$.next({
@@ -105,5 +112,11 @@ export class ProductService {
         this.cartList.splice(index, 1);
       }
     }
+    this.calculateLength();
+    this.calculatePrice();
+    this._cartCounter$.next({
+      counter: this.cartListLength,
+      price: this.cartListFullPrice
+    });
   }
 }
