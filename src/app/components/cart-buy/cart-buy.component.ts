@@ -7,14 +7,22 @@ import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 })
 export class CartBuyComponent implements OnInit {
   cartPrice: number = 0;
-  isTrue: boolean;
+  isBought: boolean = false;
+  isRemoved: boolean = false;
   constructor() {}
 
-  ngOnInit() {
-    this.isTrue = true;
+  ngOnInit() {}
+
+  buyAll() {
+    this.isBought = true;
     setTimeout(() => {
-      this.isTrue = false;
-      console.log('hello');
-    }, 1000);
+      this.isBought = false;
+    }, 1500);
+  }
+  removeAll() {
+    this.isRemoved = true;
+    setTimeout(() => {
+      this.isRemoved = false;
+    }, 1500);
   }
 }

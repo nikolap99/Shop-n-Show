@@ -1,8 +1,17 @@
 <div class="cart-buy-box">
   <div class="total-price">Total: {{ cartPrice | currency }}</div>
   <div class="cart-btn-container">
-    <button class="remove-all-btn">Remove All</button
-    ><button class="buy-btn">Buy All</button>
+    <button (click)="removeAll()" class="remove-all-btn">Remove All</button
+    ><button (click)="buyAll()" class="buy-btn">Buy All</button>
   </div>
-  <h1 *ngIf="isTrue">HELLO</h1>
+</div>
+<div *ngIf="isBought" class="successful-purchase-container">
+  <div class="modal-inner">
+    <h1>You have successfully purchased everything!</h1>
+  </div>
+</div>
+<div *ngIf="isRemoved" class="successful-remove-container">
+  <div class="modal-inner">
+    <h1>You have successfully removed items from the cart!</h1>
+  </div>
 </div>

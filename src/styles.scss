@@ -453,6 +453,32 @@ a {
 .cart-page-container {
   margin-top: 7em;
 }
+
+/* Successful purchase modal */
+.successful-purchase-container,
+.successful-remove-container {
+  position: fixed;
+  display: block;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 999;
+  .modal-inner {
+    font-size: 0.8em;
+    width: 50%;
+    padding: 1em 0;
+    text-align: center;
+    margin: 0 auto;
+    margin-top: 25%;
+    transform: translateY(-50%);
+    background: #fff;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05), 0 2px 4px rgba(0, 0, 0, 0.05);
+    border-radius: 6px;
+  }
+}
+
 @media only screen and (max-width: 1000px) {
   /* Cart in header */
   .cart-box {
