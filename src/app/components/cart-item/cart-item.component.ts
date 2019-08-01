@@ -7,7 +7,22 @@ import { Product } from '../../product';
 })
 export class CartItemComponent implements OnInit {
   @Input() product: Product;
+  quantity: number;
   constructor() {}
 
-  ngOnInit() {}
+  ngOnInit() {
+    let { quantity = 0 } = { ...this.product };
+    this.quantity = quantity;
+  }
+
+  incrementProduct() {
+    this.quantity++;
+  }
+  decrementProduct() {
+    if (this.quantity > 1) this.quantity--;
+  }
+
+  removeCartItem() {
+    alert('removed');
+  }
 }

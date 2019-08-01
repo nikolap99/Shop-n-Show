@@ -6,11 +6,14 @@
 
   <div class="cart-quantity-box">
     <div class="cart-quantity-buttons">
-      <button class="quantity-btn">-</button><span>{{ product.quantity }}</span
-      ><button class="quantity-btn">+</button>
+      <button (click)="decrementProduct()" class="quantity-btn">-</button
+      ><span>{{ quantity }}</span
+      ><button (click)="incrementProduct()" class="quantity-btn">+</button>
     </div>
-    <span class="price">{{ product.quantity * product.price | currency }}</span>
+    <span class="price">{{ quantity * product.price | currency }}</span>
   </div>
 
-  <div class="cart-remove"><button class="btn-remove">x</button></div>
+  <div class="cart-remove">
+    <button (click)="removeCartItem()" class="btn-remove">x</button>
+  </div>
 </div>
