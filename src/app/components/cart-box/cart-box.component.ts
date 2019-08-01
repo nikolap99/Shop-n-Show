@@ -19,7 +19,7 @@ export class CartBoxComponent implements OnInit {
   private _onDestroy$ = new Subject<void>();
 
   constructor(private productService: ProductService) {
-    this.cartCounter = productService.cartListLength;
+    this.cartCounter = this.productService.cartListLength;
     this._subscription = productService.cartCounter$
       .pipe(takeUntil(this._onDestroy$))
       .subscribe(value => {

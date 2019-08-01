@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Subject, Observable } from 'rxjs';
+import { takeUntil } from 'rxjs/operators';
 import { Product } from '../../product';
 import { ProductService } from '../../product.service';
 
@@ -8,17 +10,26 @@ import { ProductService } from '../../product.service';
   styleUrls: ['./cart-item-list.component.scss']
 })
 export class CartItemListComponent implements OnInit {
-  products: Product[];
-  constructor(private productService: ProductService) {}
+  products: Product[] = [];
+  _subscription;
 
-  ngOnInit() {
-    this.getCartProducts();
-    console.log(this.products);
+  private _onDestroy$ = new Subject<void>();
+
+  constructor(private productService: ProductService) {
+    this.products = this.productService.cartList;
+    this._subscription = productService.cartList$
+      .pipe(takeUntil(this._onDestroy$))
+      .subscribe(value => {
+        let { products = [] } = { ...value };
+        this.products = products;
+      });
   }
 
-  getCartProducts(): void {
-    this.productService
-      .getCartProducts()
-      .subscribe(product => (this.products = product));
+  ngOnInit() {}
+
+  ngOnDestroy() {
+    // Prevent memory leak when component destroyed
+    this._onDestroy$.next();
+    this._onDestroy$.complete();
   }
 }

@@ -18,8 +18,12 @@ export class ProductService {
   get cartCounter$() {
     return this._cartCounter$.asObservable();
   }
+  get cartList$() {
+    return this._cartList$.asObservable();
+  }
 
   private _cartCounter$: Subject<object> = new Subject<object>();
+  private _cartList$: Subject<object> = new Subject<object>();
 
   private productsUrl = './assets/products.json';
   httpOptions = {
@@ -47,11 +51,6 @@ export class ProductService {
     );
   }
 
-  getCartProducts(): Observable<Product[]> {
-    console.table(this.cartList);
-    return of(this.cartList);
-  }
-
   goBack(): void {
     this.location.back();
   }
@@ -71,6 +70,22 @@ export class ProductService {
       (acc, obj) => acc + obj.price * obj.quantity,
       0
     );
+    this._cartCounter$.next({
+      counter: this.cartListLength,
+      price: this.cartListFullPrice
+    });
+  }
+
+  removeAllFromCart(): void {
+    this.cartList = [];
+    this.cartListLength = 0;
+    this.cartListFullPrice = 0;
+
+    // List of items in cart
+    this._cartList$.next({
+      products: this.cartList
+    });
+    // Cart counter in header
     this._cartCounter$.next({
       counter: this.cartListLength,
       price: this.cartListFullPrice
