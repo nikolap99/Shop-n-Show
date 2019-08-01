@@ -70,12 +70,15 @@ export class ProductService {
       (acc, obj) => acc + obj.price * obj.quantity,
       0
     );
+
+    // Sending object to subscribers
     this._cartCounter$.next({
       counter: this.cartListLength,
       price: this.cartListFullPrice
     });
   }
 
+  // Remove all items from cart
   removeAllFromCart(): void {
     this.cartList = [];
     this.cartListLength = 0;
@@ -90,5 +93,17 @@ export class ProductService {
       counter: this.cartListLength,
       price: this.cartListFullPrice
     });
+  }
+
+  // Remove one item from cart
+  removeFromCart(productId): void {
+    if (this.cartList.find(x => x.id === productId)) {
+      let index = this.cartList.findIndex(obj => {
+        return obj.id === productId;
+      });
+      if (index > -1) {
+        this.cartList.splice(index, 1);
+      }
+    }
   }
 }

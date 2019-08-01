@@ -9,13 +9,15 @@ import { ProductService } from '../../product.service';
 export class CartItemComponent implements OnInit {
   @Input() product: Product;
   quantity: number;
+  id: number;
   quantityDifference: number = 0;
   isClicked: boolean = false;
   constructor(private productService: ProductService) {}
 
   ngOnInit() {
-    let { quantity = 0 } = { ...this.product };
+    let { quantity = 0, id } = { ...this.product };
     this.quantity = quantity;
+    this.id = id;
   }
 
   incrementProduct() {
@@ -40,6 +42,6 @@ export class CartItemComponent implements OnInit {
   }
 
   removeCartItem() {
-    alert('removed');
+    this.productService.removeFromCart(this.id);
   }
 }
