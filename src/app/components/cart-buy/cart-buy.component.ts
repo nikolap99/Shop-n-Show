@@ -9,6 +9,7 @@ export class CartBuyComponent implements OnInit {
   cartPrice: number = 0;
   isBought: boolean = false;
   isRemoved: boolean = false;
+  timeInterval: number = 1500;
   constructor() {}
 
   ngOnInit() {}
@@ -17,12 +18,12 @@ export class CartBuyComponent implements OnInit {
     this.isBought = true;
     setTimeout(() => {
       this.isBought = false;
-    }, 1500);
+    }, this.timeInterval);
   }
   removeAll() {
     this.isRemoved = true;
     setTimeout(() => {
       this.isRemoved = false;
-    }, 1500);
+    }, this.timeInterval);
   }
 }

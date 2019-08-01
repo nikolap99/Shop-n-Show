@@ -478,6 +478,14 @@ a {
     border-radius: 6px;
   }
 }
+.successful-purchase-container {
+  text-decoration: underline;
+  text-decoration-color: #2ecc71;
+}
+.successful-remove-container {
+  text-decoration: underline;
+  text-decoration-color: #e74c3c;
+}
 
 @media only screen and (max-width: 1000px) {
   /* Cart in header */
