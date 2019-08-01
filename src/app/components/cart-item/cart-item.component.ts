@@ -9,6 +9,8 @@ import { ProductService } from '../../product.service';
 export class CartItemComponent implements OnInit {
   @Input() product: Product;
   quantity: number;
+  quantityDifference: number = 0;
+  isClicked: boolean = false;
   constructor(private productService: ProductService) {}
 
   ngOnInit() {
@@ -26,9 +28,15 @@ export class CartItemComponent implements OnInit {
       this.addToCart(-1);
     }
   }
-
+  myVar;
   addToCart(count) {
-    this.productService.addToCart(this.product, count);
+    this.isClicked = true;
+    this.quantityDifference += count;
+    clearTimeout(this.myVar);
+    this.myVar = setTimeout(() => {
+      this.productService.addToCart(this.product, this.quantityDifference);
+      this.quantityDifference = 0;
+    }, 600);
   }
 
   removeCartItem() {
