@@ -1,4 +1,4 @@
-<div class="cart-buy-box">
+<div *ngIf="cartPrice" class="cart-buy-box">
   <div class="total-price">Total: {{ cartPrice | currency }}</div>
   <div class="cart-btn-container">
     <button (click)="removeAll()" class="remove-all-btn">Remove All</button
